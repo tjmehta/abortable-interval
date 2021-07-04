@@ -1,11 +1,11 @@
-# Name
+# abortable-interval
 
-Description
+abortable interval via abort signals
 
 # Installation
 
 ```sh
-npm i --save node-module-template
+npm i --save abortable-interval
 ```
 
 # Usage
@@ -14,9 +14,24 @@ npm i --save node-module-template
 
 ```js
 // esm
-import nmt from 'node-module-template'
+import interval from 'abortable-interval'
 // commonjs
-const nmt = require('node-module-template').default
+const interval = require('abortable-interval').default
+```
+
+#### Example
+
+```js
+import interval from 'abortable-interval'
+
+const controller = new AbortController()
+const signal = controller.signal
+
+interval(1000, signal, () => {
+  console.log('interval', Date.now())
+})
+
+controller.abort() // clears interval
 ```
 
 # License
